@@ -38,7 +38,6 @@ class GameViewModel(private val userDataRepository: UserDataRepository,
         resetGame()
     }
 
-
     fun resetGame() {
         viewModelScope.launch {
             val wordId = userDataRepository.current_word_id_Flow.firstOrNull() ?: 0
@@ -99,6 +98,14 @@ class GameViewModel(private val userDataRepository: UserDataRepository,
                     sessionStreak = if(isNowGameOver) 0 else gameState.value.sessionStreak
                 )
             }
+        }
+    }
+
+    fun onExtraAttempt(){
+        _gameState.update {
+            it.copy(
+                remainingAttempts = it.remainingAttempts + 1
+            )
         }
     }
 }
