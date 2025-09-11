@@ -1,7 +1,5 @@
 package org.hangman3
 
-import android.app.Activity
-import android.app.Application
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,8 +9,6 @@ import androidx.annotation.RequiresApi
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
-import com.google.android.gms.ads.MobileAds
-import org.hangman3.ads.AndroidAdHolder
 import org.hangman3.data.AndroidUserDataRepository
 
 class MainActivity : ComponentActivity() {

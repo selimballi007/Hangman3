@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Carrasco</string>
+    <string name="level">Nível</string>
+    <string name="watch_and_gain">Assista E Ganhe</string>
+    <string name="back">Voltar</string>
+    <string name="score">Pontuação</string>
+    <string name="play_again">Jogue novamente</string>
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+</resources>

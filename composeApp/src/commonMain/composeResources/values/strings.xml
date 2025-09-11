@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Hangman</string>
+    <string name="level">Level</string>
+    <string name="watch_and_gain">Watch and Gain</string>
+    <string name="back">Back</string>
+    <string name="score">Score</string>
+    <string name="play_again">Play Again</string>
+    <string name="alphabet">ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+</resources>

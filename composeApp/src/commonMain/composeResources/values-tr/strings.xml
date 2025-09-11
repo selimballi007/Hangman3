@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Adam Asmaca</string>
+    <string name="level">Seviye</string>
+    <string name="watch_and_gain">İzle Ve Kazan</string>
+    <string name="back">Geri</string>
+    <string name="score">Skor</string>
+    <string name="play_again">Tekrar Oyna</string>
+    <string name="alphabet">ABCÇDEFGĞHİIJKLMNOÖPRSŞTUÜVYZ</string>
+</resources>

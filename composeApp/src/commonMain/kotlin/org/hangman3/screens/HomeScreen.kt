@@ -19,10 +19,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import hangman3.composeapp.generated.resources.Res
 import hangman3.composeapp.generated.resources.button
+import hangman3.composeapp.generated.resources.level
+import hangman3.composeapp.generated.resources.watch_and_gain
 import org.hangman3.ads.provideRewardedAdService
 import org.hangman3.model.Screen
 import org.hangman3.navigation.GameViewModel
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun HomeScreen(viewModel: GameViewModel) {
@@ -46,7 +49,7 @@ fun HomeScreen(viewModel: GameViewModel) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
 
-                SketchButton(if (levelId > 0) "Go to Level $levelId" else "Go to Game",
+                SketchButton(stringResource(Res.string.level) + " $levelId",
                     { viewModel.navigateTo(Screen.Game) }
                 )
 
@@ -55,11 +58,12 @@ fun HomeScreen(viewModel: GameViewModel) {
                         .height(40.dp)
                 )
 
-                SketchButton("Watch ad to gain extra life",
+                SketchButton(stringResource(Res.string.watch_and_gain),
                     { rewardedAdService.showRewardedAd {
                         viewModel.onExtraAttempt()
                     } }
                 )
+                
                 Image(
                     painter = painterResource(Res.drawable.button),
                     contentDescription = null,
@@ -69,3 +73,5 @@ fun HomeScreen(viewModel: GameViewModel) {
         }
     }
 }
+
+

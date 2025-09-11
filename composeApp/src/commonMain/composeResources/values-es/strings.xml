@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Ahorcado</string>
+    <string name="level">Nivel</string>
+    <string name="watch_and_gain">Mira Y Gana</string>
+    <string name="back">Atrás</string>
+    <string name="score">Puntaje</string>
+    <string name="play_again">Jugar De Nuevo</string>
+    <string name="alphabet">ABCDEFGHIJKLMNÑOPQRSTUVWXYZ</string>
+</resources>

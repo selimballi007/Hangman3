@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -59,10 +58,17 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import hangman3.composeapp.generated.resources.Res
+import hangman3.composeapp.generated.resources.alphabet
+import hangman3.composeapp.generated.resources.back
+import hangman3.composeapp.generated.resources.level
+import hangman3.composeapp.generated.resources.play_again
+import hangman3.composeapp.generated.resources.score
 import org.hangman3.ads.BannerAdView
 import org.hangman3.ads.provideAdsService
 import org.hangman3.navigation.GameViewModel
 import org.hangman3.utils.getGloriaFontFamily
+import org.jetbrains.compose.resources.stringResource
 import kotlin.math.PI
 import kotlin.math.sin
 import kotlin.random.Random
@@ -83,6 +89,8 @@ fun GameScreen(gameViewModel: GameViewModel) {
 
     val gameState by gameViewModel.gameState.collectAsState()
 
+
+
     Box(modifier = Modifier.fillMaxSize()) {
         NotebookBackground(
             modifier = Modifier.fillMaxSize()
@@ -92,7 +100,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                 TopAppBar(
                     title = {
                         Text(
-                            text = "Level: ${gameState.wordToGuess.id}",
+                            text = stringResource(Res.string.level) + " ${gameState.wordToGuess.id}",
                             fontFamily = getGloriaFontFamily()
                         )
                     },
@@ -101,20 +109,20 @@ fun GameScreen(gameViewModel: GameViewModel) {
                             IconButton(onClick = { gameViewModel.navigateBack() }) {
                                 Icon(
                                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                    contentDescription = "Back"
+                                    contentDescription = stringResource(Res.string.back)
                                 )
                             }
                         }
                     },
                     actions = {
                         Text(
-                            text = "Score: ${gameState.score}",
+                            text = stringResource(Res.string.score) + " ${gameState.score}",
                             fontFamily = getGloriaFontFamily(),
                             fontSize = 22.sp,
                             modifier = Modifier.padding(end = 16.dp)
                         )
                     },
-                    colors = TopAppBarDefaults.topAppBarColors( containerColor = Color.Transparent)
+                    colors = TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
                 )
             },
             bottomBar = {
@@ -129,7 +137,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
             Column(
                 modifier = Modifier.fillMaxSize().padding(innerPadding),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.Center
+                verticalArrangement = Arrangement.Top
             ) {
                 Row(
                     modifier = Modifier.fillMaxWidth(),
@@ -149,11 +157,6 @@ fun GameScreen(gameViewModel: GameViewModel) {
                         text = gameState.wordToGuess.explanation
                     )
                 }
-
-                Spacer(
-                    modifier = Modifier
-                        .height(16.dp)
-                )
 
                 Text(
                     text = gameState.displayWord,
@@ -179,7 +182,7 @@ fun GameScreen(gameViewModel: GameViewModel) {
                         ads.showInterstitial()
                         adCount=0
                     }
-                    SketchButton("Play Again", { gameViewModel.resetGame() })
+                    SketchButton(stringResource(Res.string.play_again), { gameViewModel.resetGame() })
                     ads.loadInterstitial()
                 }
             }
@@ -266,19 +269,19 @@ fun DisplayKeyboard(
 ){
     FlowRow(
         horizontalArrangement = Arrangement.Center,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
+        maxItemsInEachRow = 9
     ) {
-        ('A'..'Z').forEach { letter ->
+        stringResource(Res.string.alphabet).forEach { letter ->
             TextButton(
                 onClick = {onLetterClick(letter)},
                 enabled = !isDisabled(letter) ,
-                modifier = Modifier.padding(2.dp).width(30.dp).height(42.dp),
-                contentPadding = PaddingValues(0.dp),
-
+                modifier = Modifier.padding(top=0.dp).width(36.dp).height(44.dp),
+                contentPadding = PaddingValues(0.dp)
             ) {
                 Text(
                     text = letter.uppercase(),
-                    fontSize = 30.sp,
+                    fontSize = 28.sp,
                     fontFamily = getGloriaFontFamily(),
                     textAlign = TextAlign.Center,
                     color = if (isDisabled(letter)){
@@ -333,7 +336,7 @@ fun ExplanationCard(modifier: Modifier, text : String) {
     ) {
         Text(
             text = text,
-            fontSize = 24.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             fontFamily = getGloriaFontFamily(),
             modifier = Modifier
